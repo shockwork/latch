@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="/dist/latch-0.0.1.js"></script>
+
+</head>
+<body>
+
+<a href="/mylink">Hej</a>
+<a href="/mylink2/deep/as/h/ell">Hej 2</a>
+
+	<script>
+		var app = latch({
+
+			//dispatch: false
+
+		});		
+
+		var tweets = app.createRouter("tweets");
+		
+		tweets.route("/:id", function (id) {
+
+			console.log(id);
+
+		});
+
+		console.log(app);
+
+		app.mount("/tweets", app.getRouter("tweets"));
+		app.route("/lazy/:id", function (id) {
+			console.log("lazy", id);
+		});
+		app.dispatch("/tweets/1412");
+
+	</script>
+
+</body>
+</html>
